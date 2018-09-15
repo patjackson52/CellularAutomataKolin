@@ -1,0 +1,25 @@
+allprojects {
+    buildscript {
+        repositories {
+            maven { url "http://dl.bintray.com/kotlin/kotlin-dev" }
+            google()
+        }
+    }
+
+    repositories {
+        maven { url "http://dl.bintray.com/kotlin/kotlin-dev" }
+        google()
+    }
+}
+
+task build {
+    subprojects.each {
+        dependsOn("${it.path}:build")
+    }
+}
+
+task clean {
+    subprojects.each {
+        dependsOn("${it.path}:clean")
+    }
+}
