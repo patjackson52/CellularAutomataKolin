@@ -4,7 +4,7 @@ import com.jackson.cellular_automata.listOfBoolean
 import com.jackson.cellular_automata.toBooleanArray
 
 
-class CellularGenerator(ruleSet: Int, val width: Int, val callbacks: Callbacks) {
+class CellularGenerator(ruleSet: Int, val width: Int) {
 
     val rulesMap: Map<List<Boolean>, Boolean>
     val rulesKeysArray = arrayOf(
@@ -17,41 +17,31 @@ class CellularGenerator(ruleSet: Int, val width: Int, val callbacks: Callbacks) 
             listOfBoolean("001"),
             listOfBoolean("000")
     )
+    private var currentGeneration: List<Boolean> = listOf()
 
     init {
         val rule = ruleSet.toBooleanArray()
-
         rulesMap = (0..7).associate { rulesKeysArray[it] to rule[it] }
     }
 
-    fun start() {
-        val firstGenerationArray = (0 until width).map { '0' }.toCharArray()
-        firstGenerationArray[width / 2] = '1'
-        var currentGeneration = listOfBoolean(firstGenerationArray.joinToString(""))
-        var continueGeneration = true
-
-        var genNum: Long = 0
-        while (continueGeneration) {
-            continueGeneration = callbacks.onNextGeneration(currentGeneration, genNum)
+    fun next(): List<Boolean> {
+        if (currentGeneration.isEmpty()) {
+            val firstGenerationArray = (0 until width).map { '0' }.toCharArray()
+            firstGenerationArray[width / 2] = '1'
+            currentGeneration = listOfBoolean(firstGenerationArray.joinToString(""))
+        } else {
             currentGeneration = generateNext(currentGeneration)
-            genNum++
         }
+        return currentGeneration
     }
 
-    interface Callbacks {
-        fun onNextGeneration(currentGeneration: List<Boolean>, genNum: Long): Boolean
-    }
-
-    fun generateNext(current: List<Boolean>): List<Boolean> {
-//        println("current width: ${current.size}")
+    private fun generateNext(current: List<Boolean>): List<Boolean> {
         return (0 until width).map {
             val neighborHood = when (it) {
                 0 -> listOf(false).plus(current.subList(it, it + 2))
                 width - 1 -> current.subList(it - 1, it + 1).plus(false)
                 else -> current.subList(it - 1, it + 2)
             }
-
-//            println("neighborHood = $neighborHood")
             rulesMap[neighborHood]!!
         }.toList()
     }

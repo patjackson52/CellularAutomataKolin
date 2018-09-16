@@ -13,19 +13,15 @@ class JvmCellularGenerator {
         fun main(args: Array<String>) {
             val ruleSet = args.first()
             val consoleWidth = getConsoleWidth()
-            val generator = CellularGenerator(ruleSet.toInt(), consoleWidth, object : CellularGenerator.Callbacks {
-                override fun onNextGeneration(currentGeneration: List<Boolean>, genNum: Long): Boolean {
-                    printGeneration(currentGeneration)
-                    return genNum <= 1000
-                }
-            })
+            val generator = CellularGenerator(ruleSet.toInt(), consoleWidth)
 
-            generator.start()
-
+            (0..1000).forEach {
+                printGeneration(generator.next())
+            }
         }
 
         fun printGeneration(generation: List<Boolean>) {
-            val row = generation.map { if (it) '1' else '0' }.joinToString("")
+            val row = generation.map { if (it) '█' else ' ' }.joinToString("")
             println(row)
         }
 
