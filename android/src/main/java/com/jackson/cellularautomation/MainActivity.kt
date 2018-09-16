@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 
-class MainActivity : AppCompatActivity(), NumberPickerDialog.OnValueChangeListener {
+class MainActivity : AppCompatActivity(), GenerationOptionsDialog.OnValueChangeListener {
     override fun onChanged(rule: Int, blockSize: Int) {
         cellularView.start(rule, 0, pixelSize = blockSize)
     }
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), NumberPickerDialog.OnValueChangeListen
         cellularView = findViewById(R.id.cellular_view)
         fab = findViewById(R.id.fab)
         fab.setOnClickListener {
-            val numPickDialog = NumberPickerDialog()
+            val numPickDialog = GenerationOptionsDialog()
             numPickDialog.setValueChangeListener(this)
             numPickDialog.show(supportFragmentManager, "rule picker")
         }

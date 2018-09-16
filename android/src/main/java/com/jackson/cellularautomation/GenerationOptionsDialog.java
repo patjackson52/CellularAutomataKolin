@@ -9,7 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
 
-public class NumberPickerDialog extends DialogFragment {
+/**
+ * DialogFragment to display options for CellularGenerator.
+ * Shows NumberPicker for ruleset and blocksize.
+ */
+public class GenerationOptionsDialog extends DialogFragment {
     static int ruleSet = 30;
     static int blockSize = 10;
 

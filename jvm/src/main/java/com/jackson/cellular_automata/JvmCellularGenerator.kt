@@ -5,6 +5,11 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 
+/**
+ * JVM CLI implementation of CellularGenerator using characters for output.
+ * Attempts to get the console width automatically and then print 1000 generations.
+ * Takes the ruleset as a parameter
+ */
 class JvmCellularGenerator {
     companion object {
 
