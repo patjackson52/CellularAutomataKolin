@@ -10,7 +10,7 @@ class ExtensionsTest {
     fun getBooleanArrayFor1() {
         val booleanArray = 1.toBooleanArray()
 
-        val expectedArray = booleanArrayOf(false, false, false, false, false, false, false, true)
+        val expectedArray = booleanArrayOf("00000001")
 
         printBooleanArray(booleanArray, "result")
         printBooleanArray(expectedArray, "expected")
@@ -20,8 +20,7 @@ class ExtensionsTest {
     @Test
     fun getBooleanArrayFor2() {
         val booleanArray = 2.toBooleanArray()
-
-        val expectedArray = booleanArrayOf(false, false, false, false, false, false, true, false)
+        val expectedArray = booleanArrayOf(0, 0, 0, 0, 0, 0, 1, 0)
 
         assertTrue { booleanArray.contentEquals(expectedArray) }
     }
@@ -35,7 +34,7 @@ class ExtensionsTest {
         assertTrue { booleanArray.contentEquals(expectedArray) }
     }
 
-    fun printBooleanArray(ary: BooleanArray, label: String) {
+    private fun printBooleanArray(ary: BooleanArray, label: String) {
         println(label)
         ary.forEach { print("$it ") }
         println()
