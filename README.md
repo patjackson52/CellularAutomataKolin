@@ -69,3 +69,8 @@ Rule 30 CLI output:
      ██ ████  ██ █  ███ █  █ ████ ████ █████ ██ █████   █   ██ █ ██  ██ ████
     ██  █   ███  ████   ████ █    █    █     █  █    █ ███ ██  █ █ ███  █   █
 
+
+
+Android Rule 30 output:
+
+![Android rule 30](https://raw.githubusercontent.com/patjackson52/CellularAutomataKolin/master/Screenshot_1537188061.png)
