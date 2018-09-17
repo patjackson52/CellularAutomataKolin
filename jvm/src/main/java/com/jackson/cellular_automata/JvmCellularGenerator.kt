@@ -25,7 +25,7 @@ class JvmCellularGenerator {
             }
         }
 
-        fun printGeneration(generation: List<Boolean>) {
+        fun printGeneration(generation: BooleanArray) {
             val row = generation.map { if (it) '█' else ' ' }.joinToString("")
             println(row)
         }

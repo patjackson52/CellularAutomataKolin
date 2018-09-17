@@ -24,7 +24,7 @@ class CellularView : View {
     private var intervalMs: Long = -1
     private var pixelSize: Int = 1
     private var generator: CellularGenerator? = null
-    private val generations = mutableListOf(listOf<Boolean>())
+    private val generations = mutableListOf(booleanArrayOf())
 
 
     constructor(context: Context) : this(context, null)

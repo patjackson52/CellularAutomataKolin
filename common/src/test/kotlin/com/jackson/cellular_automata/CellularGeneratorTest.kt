@@ -5,12 +5,13 @@ import kotlin.test.Test
 import kotlin.test.assertTrue
 
 class CellularGeneratorTest {
+
     @Test
-    fun shouldGetRule() {
+    fun verifyFirst10Generations() {
         val generator = CellularGenerator(90, 10)
         (0..10).forEach {
             val nextGen = generator.next()
-            assertTrue(nextGen == firstTenRule30Generations[it])
+            assertTrue(nextGen.contentEquals(firstTenRule30Generations[it]))
         }
     }
 
@@ -20,32 +21,17 @@ class CellularGeneratorTest {
     }
 
 
-    @Test
-    fun canUseBooleanArrayAsKey() {
-        val testRulesMap: Map<List<Boolean>, Int> = mapOf(
-                listOfBoolean("111") to 0,
-                listOfBoolean("101") to 1,
-                listOfBoolean("101") to 2,
-                listOfBoolean("000") to 3
-        )
-        val key = listOfBoolean("000")
-
-        val result = testRulesMap[key]!!
-        println("value = $result")
-        assertTrue { result == 3 }
-    }
-
     private val firstTenRule30Generations = listOf(
-            listOfBoolean("0000010000"),
-            listOfBoolean("0000101000"),
-            listOfBoolean("0001000100"),
-            listOfBoolean("0010101010"),
-            listOfBoolean("0100000001"),
-            listOfBoolean("1010000010"),
-            listOfBoolean("0001000101"),
-            listOfBoolean("0010101000"),
-            listOfBoolean("0100000100"),
-            listOfBoolean("1010001010"),
-            listOfBoolean("0001010001")
+            booleanArrayOf("0000010000"),
+            booleanArrayOf("0000101000"),
+            booleanArrayOf("0001000100"),
+            booleanArrayOf("0010101010"),
+            booleanArrayOf("0100000001"),
+            booleanArrayOf("1010000010"),
+            booleanArrayOf("0001000101"),
+            booleanArrayOf("0010101000"),
+            booleanArrayOf("0100000100"),
+            booleanArrayOf("1010001010"),
+            booleanArrayOf("0001010001")
     )
 }
